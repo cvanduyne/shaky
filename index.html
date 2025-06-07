@@ -21,6 +21,7 @@ var vx = 0.0; // Velocity x and y
 var vy = 0.0;
 var updateRate = 1/60; // Sensor refresh rate
 
+var shake = 0.0;
 function getAccel(){
     DeviceMotionEvent.requestPermission().then(response => {
         if (response == 'granted') {
@@ -31,6 +32,11 @@ function getAccel(){
                 rotation_degrees = event.alpha;
                 frontToBack_degrees = event.beta;
                 leftToRight_degrees = event.gamma;
+
+                shake += Math.abs(leftToRight_degrees) * updateRate;
+
+                shake *= .90;
+                
                 
                 // Update velocity according to how tilted the phone is
                 // Since phones are narrower than they are long, double the increase to the x velocity
