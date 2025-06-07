@@ -37,7 +37,7 @@ function getAccel(){
                 shake += Math.abs(leftToRight_degrees-lastDegrees) * updateRate * 100;
                 lastDegrees = leftToRight_degrees;
                 
-                shake *= .90;
+                shake *= .99;
                 
                 
                 // Update velocity according to how tilted the phone is
