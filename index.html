@@ -104,7 +104,7 @@ function getAccel(){
                 accel.z = accelFilters[2].process(accel.z)
                 
                 accelMagnitude = Math.sqrt(accel.x**2+accel.y**2+accel.z**2);
-                accelText.innerHTML = ":"+accelMagnitude;
+                accelText.innerHTML = "-----";
 
                 dot = document.getElementsByClassName("indicatorDot")[1]
                 dot.setAttribute('style', "top: 10%;left:" + (accelMagnitude*20) + "%;");
@@ -117,8 +117,10 @@ function getAccel(){
                 
                 rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2);
                 dot = document.getElementsByClassName("indicatorDot")[2]
-                dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude) + "%;");
-                
+                dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude/100) + "%;");
+
+                accelText.innerHTML = ":"+rotationRateMagnitude;
+
             });
             window.addEventListener('deviceorientation',(event) => {
                 // Expose each orientation angle in a more readable way
