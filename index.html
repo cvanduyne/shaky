@@ -109,13 +109,13 @@ function getAccel(){
                 dot = document.getElementsByClassName("indicatorDot")[1]
                 dot.setAttribute('style', "top: 10%;left:" + (accelMagnitude*20) + "%;");
 
-                var rot = event.rotationRate; 
-                rot.alpha = rotFilters[0].process((rot.alpha-lastRot.alpha)/updateRate)
-                rot.beta = rotFilters[1].process((rot.beta-lastRot.beta)/updateRate)
-                rot.gamma = rotFilters[2].process((rot.gamma-lastRot.gamma)/updateRate)
-                lastRot.alpha = rot.alpha;
-                lastRot.beta = rot.beta;
-                lastRot.gamma = rot.gamma;
+                var eventRot = event.rotationRate; 
+                rot.alpha = rotFilters[0].process((eventRot.alpha-lastRot.alpha)/updateRate)
+                rot.beta = rotFilters[1].process((eventRot.beta-lastRot.beta)/updateRate)
+                rot.gamma = rotFilters[2].process((eventRot.gamma-lastRot.gamma)/updateRate)
+                lastRot.alpha = eventRot.alpha;
+                lastRot.beta = eventRot.beta;
+                lastRot.gamma = eventRot.gamma;
 
                 try{
                     
@@ -175,7 +175,7 @@ function getAccel(){
     </head>
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
-        <div id="accelText" style="top:20px; left:10%">TEST 888</div>
+        <div id="accelText" style="top:20px; left:10%">TEST 999</div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
