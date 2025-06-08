@@ -65,8 +65,9 @@ class BiquadBandpassFilter {
 }
 
 // Usage:
-const filter = new BiquadBandpassFilter(60, 5, 2); // 60Hz sample rate, 5Hz center, Q=1
+const filterX = new BiquadBandpassFilter(60, 5, 2); // 60Hz sample rate, 5Hz center, Q=1
 
+const accelText = document.getElementsByClassName("accelText")[0]
         
 var px = 50; // Position x and y
 var py = 50;
@@ -81,6 +82,11 @@ function getAccel(){
         if (response == 'granted') {
        // Add a listener to get smartphone orientation 
            // in the alpha-beta-gamma axes (units in degrees)
+            window.addEventListener('devicemotion',(event) => {
+                // Expose each orientation angle in a more readable way
+                accelMagnitude = Math.sqrt(event.x**2, event.y**2, event.z**2);
+                accelText.innerHTML = ":"+accelMagnitude
+                
             window.addEventListener('deviceorientation',(event) => {
                 // Expose each orientation angle in a more readable way
                 rotation_degrees = event.alpha;
@@ -126,6 +132,7 @@ function getAccel(){
     </head>
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
+        <div class="accelText" style="top:20px; left:10%">TEST</div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
     </body>
 </html>
