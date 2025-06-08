@@ -125,7 +125,7 @@ function getAccel(){
 
                     
                 accelText.innerHTML = "lastRot: "+lastRot;
-                rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2) / 100;
+                rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2) / 20;
                 dot = document.getElementsByClassName("indicatorDot")[2]
                 dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude) + "%;");
                     accelText.innerHTML = ":"+rotationRateMagnitude;
