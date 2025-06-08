@@ -77,7 +77,7 @@ const rotFilters = [
         new BiquadBandpassFilter(60, 5, 2),
         new BiquadBandpassFilter(60, 5, 2),    
     ]
-        
+const lastRot = {alpha:0,beta:0,gamma:0};
 var px = 50; // Position x and y
 var py = 50;
 var vx = 0.0; // Velocity x and y
@@ -110,15 +110,14 @@ function getAccel(){
                 dot.setAttribute('style', "top: 10%;left:" + (accelMagnitude*20) + "%;");
 
                 var rot = event.rotationRate; 
-                rot.alpha = rotFilters[0].process(rot.alpha)
-                rot.beta = rotFilters[1].process(rot.beta)
-                rot.gamma = rotFilters[2].process(rot.gamma)
+                rot.alpha = rotFilters[0].process((rot.alpha-lastRot.alpha)/updateRate)
+                rot.beta = rotFilters[1].process((rot.beta-lastRot.beta)/updateRate)
+                rot.gamma = rotFilters[2].process((rot.gamma-lastRot.gamma)/updateRate)
+                lastRot = {...rot};
                 
                 rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2);
-                rotationRateAccel = (rotationRateMagnitude - lastRotationRateMagnitude) / updateRate;
-                lastRotationRateMagnitude = rotationRateMagnitude;
                 dot = document.getElementsByClassName("indicatorDot")[2]
-                dot.setAttribute('style', "top: 20%;left:" + (rotationRateAccel) + "%;");
+                dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude) + "%;");
                 
             });
             window.addEventListener('deviceorientation',(event) => {
@@ -167,7 +166,7 @@ function getAccel(){
     </head>
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
-        <div id="accelText" style="top:20px; left:10%">TEST 666</div>
+        <div id="accelText" style="top:20px; left:10%">TEST 777</div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
