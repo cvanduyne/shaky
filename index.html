@@ -138,7 +138,7 @@ function getAccel(){
 
                 dot = document.getElementsByClassName("indicatorDot")[3]
                 dot.setAttribute('style', "top: 30%;left:" + (shake) + "%;");
-                    accelText.innerHTML = "shake:"+shake;
+                    accelText.innerHTML = "shake:"+Math.round(shake);
 
                 }
                 catch(e)
@@ -163,7 +163,7 @@ function getAccel(){
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
         <div id="accelText" style="top:20px; left:10%">TEST 333</div>
-        <div id="textOutput" style="font-size: 20vh;left:50%; top:50%;">123</div>        
+        <div id="textOutput" style="font-size: 15vmin;left:50%; top:50%;width:4em">123</div>        
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
