@@ -79,6 +79,8 @@ var lastDegrees = 0.0;
 var shake = 0.0;
 function getAccel(){
     DeviceMotionEvent.requestPermission().then(response => {
+        accelText.innerHTML = "---";
+        accelText.innerHTML = ":"+123;
         if (response == 'granted') {
        // Add a listener to get smartphone orientation 
            // in the alpha-beta-gamma axes (units in degrees)
