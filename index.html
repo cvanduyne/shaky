@@ -89,6 +89,7 @@ var shake = 0.0;
 var lastRotationRateMagnitude = 0.0;
 function getAccel(){
     const accelText = document.getElementById("accelText");
+    const textOutput = document.getElementById("textOutput");
 
     DeviceMotionEvent.requestPermission().then(response => {
         accelText.innerText  = "---";
@@ -133,6 +134,8 @@ function getAccel(){
 
                 shake *= .95;
 
+                textOutput.innerText = shake;   
+
                 dot = document.getElementsByClassName("indicatorDot")[3]
                 dot.setAttribute('style', "top: 30%;left:" + (shake) + "%;");
                     accelText.innerHTML = "shake:"+shake;
@@ -160,6 +163,7 @@ function getAccel(){
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
         <div id="accelText" style="top:20px; left:10%">TEST 333</div>
+        <div id="textOutput" style="font-size: 20vh;left:50%; top:50%;">123</div>        
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
