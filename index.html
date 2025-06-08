@@ -110,9 +110,9 @@ function getAccel(){
                 dot.setAttribute('style', "top: 10%;left:" + (accelMagnitude*20) + "%;");
 
                 var rot = event.rotationRate; 
-                rot.x = rotFilters[0].process(rot.x)
-                rot.y = rotFilters[1].process(rot.y)
-                rot.z = rotFilters[2].process(rot.z)
+                rot.alpha = rotFilters[0].process(rot.alpha)
+                rot.beta = rotFilters[1].process(rot.beta)
+                rot.gamma = rotFilters[2].process(rot.gamma)
                 
                 rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2);
                 rotationRateAccel = (rotationRateMagnitude - lastRotationRateMagnitude) / updateRate;
