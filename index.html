@@ -86,7 +86,7 @@ function getAccel(){
                 // Expose each orientation angle in a more readable way
                 accelMagnitude = Math.sqrt(event.x**2, event.y**2, event.z**2);
                 accelText.innerHTML = ":"+accelMagnitude
-                
+            });
             window.addEventListener('deviceorientation',(event) => {
                 // Expose each orientation angle in a more readable way
                 rotation_degrees = event.alpha;
