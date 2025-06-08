@@ -113,14 +113,21 @@ function getAccel(){
                 rot.alpha = rotFilters[0].process((rot.alpha-lastRot.alpha)/updateRate)
                 rot.beta = rotFilters[1].process((rot.beta-lastRot.beta)/updateRate)
                 rot.gamma = rotFilters[2].process((rot.gamma-lastRot.gamma)/updateRate)
-                lastRot = {...rot};
-                
+                lastRot.alpha = rot.alpha;
+                lastRot.beta = rot.beta;
+                lastRot.gamma = rot.gamma;
+
+                try{
+                    
                 rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2);
                 dot = document.getElementsByClassName("indicatorDot")[2]
                 dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude/100) + "%;");
-
-                accelText.innerHTML = ":"+rotationRateMagnitude;
-
+                    accelText.innerHTML = ":"+rotationRateMagnitude;
+                }
+                catch(e)
+                {
+                    accelText.innerHTML = e;
+                }
             });
             window.addEventListener('deviceorientation',(event) => {
                 // Expose each orientation angle in a more readable way
@@ -168,7 +175,7 @@ function getAccel(){
     </head>
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
-        <div id="accelText" style="top:20px; left:10%">TEST 777</div>
+        <div id="accelText" style="top:20px; left:10%">TEST 888</div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
