@@ -67,7 +67,6 @@ class BiquadBandpassFilter {
 // Usage:
 const filterX = new BiquadBandpassFilter(60, 5, 2); // 60Hz sample rate, 5Hz center, Q=1
 
-const accelText = document.getElementById("accelText");
         
 var px = 50; // Position x and y
 var py = 50;
@@ -78,6 +77,8 @@ var updateRate = 1/60; // Sensor refresh rate
 var lastDegrees = 0.0;
 var shake = 0.0;
 function getAccel(){
+    const accelText = document.getElementById("accelText");
+
     DeviceMotionEvent.requestPermission().then(response => {
         accelText.innerText  = "---";
         accelText.innerText  = ":"+123;
@@ -134,7 +135,7 @@ function getAccel(){
     </head>
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
-        <div id="accelText" style="top:20px; left:10%">TEST 3</div>
+        <div id="accelText" style="top:20px; left:10%">TEST 4</div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
     </body>
 </html>
