@@ -89,6 +89,10 @@ function getAccel(){
                 var accel = event.acceleration;
                 accelMagnitude = Math.sqrt(accel.x**2+accel.y**2+accel.z**2);
                 accelText.innerHTML = ":"+accelMagnitude;
+
+                dot = document.getElementsByClassName("indicatorDot")[1]
+                dot.setAttribute('style', "left:" + (accelMagnitude*20) + "%;");
+
             });
             window.addEventListener('deviceorientation',(event) => {
                 // Expose each orientation angle in a more readable way
@@ -136,6 +140,9 @@ function getAccel(){
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
         <div id="accelText" style="top:20px; left:10%">TEST 4</div>
+        <div class="indicatorDot" style="left:30%; top:30%;"></div>
+        <div class="indicatorDot" style="left:30%; top:30%;"></div>
+        <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
     </body>
 </html>
