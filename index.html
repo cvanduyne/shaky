@@ -104,22 +104,25 @@ function getAccel(){
                 accel.z = accelFilters[2].process(accel.z)
                 
                 accelMagnitude = Math.sqrt(accel.x**2+accel.y**2+accel.z**2);
-                accelText.innerHTML = "-----";
+                accelText.innerHTML = "---------";
 
                 dot = document.getElementsByClassName("indicatorDot")[1]
                 dot.setAttribute('style', "top: 10%;left:" + (accelMagnitude*20) + "%;");
 
                 var eventRot = event.rotationRate; 
+                try{
+                accelText.innerHTML = "eventRot: "+eventRot;
                 rot.alpha = rotFilters[0].process((eventRot.alpha-lastRot.alpha)/updateRate)
                 rot.beta = rotFilters[1].process((eventRot.beta-lastRot.beta)/updateRate)
                 rot.gamma = rotFilters[2].process((eventRot.gamma-lastRot.gamma)/updateRate)
+                accelText.innerHTML = "rot: "+rot;
+                
                 lastRot.alpha = eventRot.alpha;
                 lastRot.beta = eventRot.beta;
                 lastRot.gamma = eventRot.gamma;
 
-                try{
-
-               accelText.innerHTML = "---:"+(rot)+"\n"+(lastRot);
+                    
+                accelText.innerHTML = "lastRot: "+lastRot;
                 rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2);
                 dot = document.getElementsByClassName("indicatorDot")[2]
                 dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude/100) + "%;");
@@ -176,7 +179,7 @@ function getAccel(){
     </head>
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
-        <div id="accelText" style="top:20px; left:10%">TEST 00000</div>
+        <div id="accelText" style="top:20px; left:10%">TEST 11111</div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
