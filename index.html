@@ -112,6 +112,7 @@ function getAccel(){
                 var eventRot = event.rotationRate; 
                 try{
                 accelText.innerHTML = "eventRot: "+eventRot;
+                var rot = {};
                 rot.alpha = rotFilters[0].process((eventRot.alpha-lastRot.alpha)/updateRate)
                 rot.beta = rotFilters[1].process((eventRot.beta-lastRot.beta)/updateRate)
                 rot.gamma = rotFilters[2].process((eventRot.gamma-lastRot.gamma)/updateRate)
