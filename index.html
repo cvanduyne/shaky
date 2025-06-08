@@ -103,11 +103,11 @@ function getAccel(){
                 accel.y = accelFilters[1].process(accel.y)
                 accel.z = accelFilters[2].process(accel.z)
                 
-                accelMagnitude = Math.sqrt(accel.x**2+accel.y**2+accel.z**2);
+                accelMagnitude = Math.sqrt(accel.x**2+accel.y**2+accel.z**2) * 20;
                 accelText.innerHTML = "---------";
 
                 dot = document.getElementsByClassName("indicatorDot")[1]
-                dot.setAttribute('style', "top: 10%;left:" + (accelMagnitude*20) + "%;");
+                dot.setAttribute('style', "top: 10%;left:" + (accelMagnitude) + "%;");
 
                 var eventRot = event.rotationRate; 
                 try{
@@ -124,10 +124,19 @@ function getAccel(){
 
                     
                 accelText.innerHTML = "lastRot: "+lastRot;
-                rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2);
+                rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2) / 100;
                 dot = document.getElementsByClassName("indicatorDot")[2]
-                dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude/100) + "%;");
+                dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude) + "%;");
                     accelText.innerHTML = ":"+rotationRateMagnitude;
+
+                shake += (rotationRateMagnitude + accelMagnitude)/4.0;
+
+                shake *= .99;
+
+                dot = document.getElementsByClassName("indicatorDot")[3]
+                dot.setAttribute('style', "top: 30%;left:" + (shake) + "%;");
+                    accelText.innerHTML = "shake:"+shake;
+
                 }
                 catch(e)
                 {
@@ -140,37 +149,7 @@ function getAccel(){
                 frontToBack_degrees = event.beta;
                 leftToRight_degrees = event.gamma;
 
-                
-                const filtered_degrees = filter.process(leftToRight_degrees);
-                
-                shake += Math.abs(filtered_degrees-lastDegrees) * updateRate * 100;
-                lastDegrees = filtered_degrees;
-                
-                shake *= .99;
-                
-                
-                // Update velocity according to how tilted the phone is
-                // Since phones are narrower than they are long, double the increase to the x velocity
-                vx = vx + leftToRight_degrees * updateRate*2; 
-                vy = vy + frontToBack_degrees * updateRate;
-                
-                // Update position and clip it to bounds
-                //px = px + vx*.5;
-                px = shake;// px * 0.9 + (50.0 + vx* 10) * 0.1;
-                if (px > 98 || px < 0){ 
-                    px = Math.max(0, Math.min(98, px)) // Clip px between 0-98
-                    vx = 0;
-                }
 
-                py = 50;// py + vy*.5;
-                if (py > 98 || py < 0){
-                    py = Math.max(0, Math.min(98, py)) // Clip py between 0-98
-                    vy = 0;
-                }
-                
-                dot = document.getElementsByClassName("indicatorDot")[0]
-                dot.setAttribute('style', "left:" + (px) + "%;" +
-                                              "top:" + (py) + "%;");
                 
             });
         }
@@ -180,7 +159,7 @@ function getAccel(){
     </head>
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
-        <div id="accelText" style="top:20px; left:10%">TEST 11111</div>
+        <div id="accelText" style="top:20px; left:10%">TEST 2222</div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
