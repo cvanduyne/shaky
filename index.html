@@ -135,7 +135,8 @@ function getAccel(){
                 shake *= .95;
                 var shakeShow = Math.round(shake);
 
-                textOutput.innerText = "linear: "+accelMagnitude + "\nrotation: "+ rotationRateMagnitude + "\nshake: " +shakeShow;   
+                accelText.innerText = "linear: "+accelMagnitude + "\nrotation: "+ rotationRateMagnitude;   
+                textOutput.innerText = shakeShow;   
 
                 dot = document.getElementsByClassName("indicatorDot")[3]
                 dot.setAttribute('style', "top: 30%;left:" + (shake) + "%;");
