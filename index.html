@@ -67,6 +67,16 @@ class BiquadBandpassFilter {
 // Usage:
 const filterX = new BiquadBandpassFilter(60, 5, 2); // 60Hz sample rate, 5Hz center, Q=1
 
+const accelFilters = [
+        new BiquadBandpassFilter(60, 5, 2),
+        new BiquadBandpassFilter(60, 5, 2),
+        new BiquadBandpassFilter(60, 5, 2),    
+    ]
+const rotFilters = [
+        new BiquadBandpassFilter(60, 5, 2),
+        new BiquadBandpassFilter(60, 5, 2),
+        new BiquadBandpassFilter(60, 5, 2),    
+    ]
         
 var px = 50; // Position x and y
 var py = 50;
@@ -88,6 +98,11 @@ function getAccel(){
            // in the alpha-beta-gamma axes (units in degrees)
             window.addEventListener('devicemotion',(event) => {
                 var accel = event.acceleration;
+
+                accel.x = accelFilters[0].process(accel.x)
+                accel.y = accelFilters[1].process(accel.y)
+                accel.z = accelFilters[2].process(accel.z)
+                
                 accelMagnitude = Math.sqrt(accel.x**2+accel.y**2+accel.z**2);
                 accelText.innerHTML = ":"+accelMagnitude;
 
@@ -95,6 +110,10 @@ function getAccel(){
                 dot.setAttribute('style', "top: 10%;left:" + (accelMagnitude*20) + "%;");
 
                 var rot = event.rotationRate; 
+                rot.x = rotFilters[0].process(rot.x)
+                rot.y = rotFilters[1].process(rot.y)
+                rot.z = rotFilters[2].process(rot.z)
+                
                 rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2);
                 rotationRateAccel = (rotationRateMagnitude - lastRotationRateMagnitude) / updateRate;
                 lastRotationRateMagnitude = rotationRateMagnitude;
@@ -148,7 +167,7 @@ function getAccel(){
     </head>
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
-        <div id="accelText" style="top:20px; left:10%">TEST 5555</div>
+        <div id="accelText" style="top:20px; left:10%">TEST 666</div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
