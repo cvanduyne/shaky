@@ -118,7 +118,8 @@ function getAccel(){
                 lastRot.gamma = eventRot.gamma;
 
                 try{
-                    
+
+               accelText.innerHTML = "---:"+str(rot)+"\n"+str(lastRot);
                 rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2);
                 dot = document.getElementsByClassName("indicatorDot")[2]
                 dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude/100) + "%;");
