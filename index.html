@@ -76,6 +76,7 @@ var updateRate = 1/60; // Sensor refresh rate
 
 var lastDegrees = 0.0;
 var shake = 0.0;
+var lastRotationRateMagnitude = 0.0;
 function getAccel(){
     const accelText = document.getElementById("accelText");
 
@@ -93,6 +94,12 @@ function getAccel(){
                 dot = document.getElementsByClassName("indicatorDot")[1]
                 dot.setAttribute('style', "left:" + (accelMagnitude*20) + "%;");
 
+                var rot = event.rotationRate; 
+                rotationRateMagnitude = Math.sqrt(rot.alpha**2 + rot.beta**2 + rot.gamma**2);
+                rotationRateAccel = (rotationRateMagnitude - lastRotationRateMagnitude) / updateRate;
+                dot = document.getElementsByClassName("indicatorDot")[2]
+                dot.setAttribute('style', "left:" + (rotationRateAccel*20) + "%;");
+                
             });
             window.addEventListener('deviceorientation',(event) => {
                 // Expose each orientation angle in a more readable way
@@ -100,6 +107,7 @@ function getAccel(){
                 frontToBack_degrees = event.beta;
                 leftToRight_degrees = event.gamma;
 
+                
                 const filtered_degrees = filter.process(leftToRight_degrees);
                 
                 shake += Math.abs(filtered_degrees-lastDegrees) * updateRate * 100;
