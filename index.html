@@ -67,7 +67,7 @@ class BiquadBandpassFilter {
 // Usage:
 const filterX = new BiquadBandpassFilter(60, 5, 2); // 60Hz sample rate, 5Hz center, Q=1
 
-const accelText = document.getElementsByClassName("accelText")[0]
+const accelText = document.getElementById("accelText")[0]
         
 var px = 50; // Position x and y
 var py = 50;
@@ -79,8 +79,8 @@ var lastDegrees = 0.0;
 var shake = 0.0;
 function getAccel(){
     DeviceMotionEvent.requestPermission().then(response => {
-        accelText.innerHTML = "---";
-        accelText.innerHTML = ":"+123;
+        accelText.innerText  = "---";
+        accelText.innerText  = ":"+123;
         if (response == 'granted') {
        // Add a listener to get smartphone orientation 
            // in the alpha-beta-gamma axes (units in degrees)
@@ -134,7 +134,7 @@ function getAccel(){
     </head>
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
-        <div class="accelText" style="top:20px; left:10%">TEST</div>
+        <div id="accelText" style="top:20px; left:10%">TEST 2</div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
     </body>
 </html>
