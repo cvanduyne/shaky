@@ -131,7 +131,7 @@ function getAccel(){
 
                 shake += (rotationRateMagnitude + accelMagnitude)/20.0;
 
-                shake *= .90;
+                shake *= .95;
 
                 dot = document.getElementsByClassName("indicatorDot")[3]
                 dot.setAttribute('style', "top: 30%;left:" + (shake) + "%;");
