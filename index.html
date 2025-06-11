@@ -130,7 +130,7 @@ function getAccel(){
                 dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude) + "%;");
                     accelText.innerHTML = ":"+rotationRateMagnitude;
 
-                shake = shake * 0.99 + 0.01 * (rotationRateMagnitude + accelMagnitude);
+                shake = shake * 0.97 + 0.03 * (rotationRateMagnitude + accelMagnitude) * 2.0;
 
                 var shakeShow = Math.round(shake);
 
@@ -163,7 +163,7 @@ function getAccel(){
     <body style="background-color:lightblue;">
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
         <div id="accelText" style="top:20px; left:10%">TEST 555</div>
-        <div id="textOutput" style="font-size: 15vmin;left:50%; top:50%;height:50vmin;width:100%;align:center">123</div>        
+        <div id="textOutput" style="font-size: 30vmin;left:50%; top:50%;height:50vmin;width:100%;text-align:center">123</div>        
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
