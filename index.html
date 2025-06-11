@@ -130,7 +130,7 @@ function getAccel(){
                 dot.setAttribute('style', "top: 20%;left:" + (rotationRateMagnitude) + "%;");
                     accelText.innerHTML = ":"+rotationRateMagnitude;
 
-                shake = shake * 0.90 * 0.1 * (rotationRateMagnitude + accelMagnitude)/20.0;
+                shake = shake * 0.90 + 0.1 * (rotationRateMagnitude + accelMagnitude);
 
                 var shakeShow = Math.round(shake);
 
