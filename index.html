@@ -65,17 +65,17 @@ class BiquadBandpassFilter {
 }
 
 // Usage:
-const filterX = new BiquadBandpassFilter(60, 5, 2); // 60Hz sample rate, 5Hz center, Q=1
+const filterX = new BiquadBandpassFilter(60, 5, 1); // 60Hz sample rate, 5Hz center, Q=1
 
 const accelFilters = [
-        new BiquadBandpassFilter(60, 5, 2),
-        new BiquadBandpassFilter(60, 5, 2),
-        new BiquadBandpassFilter(60, 5, 2),    
+        new BiquadBandpassFilter(60, 5, 1),
+        new BiquadBandpassFilter(60, 5, 1),
+        new BiquadBandpassFilter(60, 5, 1),    
     ]
 const rotFilters = [
-        new BiquadBandpassFilter(60, 5, 2),
-        new BiquadBandpassFilter(60, 5, 2),
-        new BiquadBandpassFilter(60, 5, 2),    
+        new BiquadBandpassFilter(60, 5, 1),
+        new BiquadBandpassFilter(60, 5, 1),
+        new BiquadBandpassFilter(60, 5, 1),    
     ]
 const lastRot = {alpha:0,beta:0,gamma:0};
 var px = 50; // Position x and y
