@@ -98,6 +98,8 @@ function getAccel(){
         accelText.innerText  = "---";
         accelText.innerText  = ":"+123;
         if (response == 'granted') {
+            document.getElementById("accelPermsButton").hidden = true;
+            
        // Add a listener to get smartphone orientation 
            // in the alpha-beta-gamma axes (units in degrees)
             window.addEventListener('devicemotion',(event) => {
@@ -107,7 +109,7 @@ function getAccel(){
                 accel.y = accelFilters[1].process(accel.y)
                 accel.z = accelFilters[2].process(accel.z)
                 
-                accelMagnitude = accelMagnitude * (1.0-smoothLevel) + smoothLevel * Math.sqrt(accel.x**2+accel.y**2+accel.z**2) * 20;
+                accelMagnitude = accelMagnitude * (1.0-smoothLevel) + smoothLevel * Math.sqrt(accel.x**2+accel.y**2+accel.z**2) * 40;
                 
                 accelText.innerHTML = "---------";
 
@@ -168,7 +170,7 @@ function getAccel(){
     </script>
     </head>
     <body style="background-color:lightblue;">
-        <button id="accelPermsButton"  style="font-size: 30vmin;left:50%; top:50%;height:75vmin;width: 75vmin;text-align:center" onclick="getAccel()"><h1>Start</h1></button>
+        <button id="accelPermsButton"  style="left:50%; top:50%;height:75vmin;width: 75vmin;align:center" onclick="getAccel()"><h1>Start</h1></button>
         <div id="accelText" style="top:20px; left:10%">TEST 555</div>
         <div id="textOutput" style="font-size: 30vmin;left:50%; top:50%;height:50vmin;width:100%;text-align:center">123</div>        
         <div class="indicatorDot" style="left:30%; top:30%;"></div>
