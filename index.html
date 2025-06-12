@@ -86,7 +86,8 @@ var updateRate = 1/60; // Sensor refresh rate
 
 var lastDegrees = 0.0;
 var shake = 0.0;
-var lastRotationRateMagnitude = 0.0;
+var rotationRateMagnitude = 0.0;
+var accelMagnitude = 0.0;
 const smoothLevel = 0.03;
         
 function getAccel(){
